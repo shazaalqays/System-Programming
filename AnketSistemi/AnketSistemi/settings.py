@@ -74,6 +74,15 @@ WSGI_APPLICATION = 'AnketSistemi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
+#If you’re using PostgreSQL, by default (empty HOST), the connection to the
+#database is done through UNIX domain sockets (‘local’ lines in pg_hba.conf).
+#If your UNIX domain socket is not in the standard location, use the same value
+#of unix_socket_directory from postgresql.conf. If you want to connect through
+#TCP sockets, set HOST to ‘localhost’ or ‘127.0.0.1’
+#(‘host’ lines in pg_hba.conf). On Windows, you should always define HOST,
+#as UNIX domain sockets are not available.
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -123,3 +132,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_REDIRECT_URL = '/account/'

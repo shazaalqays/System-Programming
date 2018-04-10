@@ -14,9 +14,10 @@ body
 }
 .form-style img
 {
-    height: 700px;
+    height: 645px;
     width: auto;
     float: right;
+    margin-right: 3%;
 }
 .form-style line
 {

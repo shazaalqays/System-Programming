@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>home</title>
-  </head>
+    <head>
+      <title>Anket Sistemi</title>
+      {% load static %}
+      <link rel="stylesheet" href="{% static 'accounts/HOME.css' %}" type="text/css">
+
+      <link rel="apple-touch-icon" sizes="180x180" href="{% static 'accounts/apple-touch-icon.png' %}">
+      <link rel="icon" type="image/png" sizes="32x32" href="{% static 'accounts/favicon-32x32.png' %}">
+      <link rel="icon" type="image/png" sizes="16x16" href="{% static 'accounts/favicon-16x16.png' %}">
+      <link rel="manifest" href="{% static 'accounts/site.webmanifest' %}">
+      <link rel="mask-icon" href="{% static 'accounts/safari-pinned-tab.svg' %}+" color="#5bbad5">
+      <meta name="msapplication-TileColor" content="#da532c">
+      <meta name="theme-color" content="#ffffff">
+    </head>
   <body>
-    <h1>home</h1>
+    <div class="home-style">
+      <img src="{% static 'accounts/ytulogo.png' %}" alt="ytulogo">
+    </div>
   </body>
 </html>

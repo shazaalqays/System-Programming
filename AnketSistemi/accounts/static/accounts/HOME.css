@@ -1,0 +1,24 @@
+body
+{
+  background-image: url(background.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+<style type = "text/css">
+.home-style
+{
+  color: #A29061;
+  font-size: 100%;
+  margin-top: 80px;
+}
+
+.home-style img
+{
+  height: 633px;
+  width: auto;
+  transform: scale(0.5);
+  margin-left: 27.5%;
+}
+
+</style>

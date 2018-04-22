@@ -16,7 +16,7 @@ class UserAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
         ('Personal info', {'fields': ('ad', 'soyad')}),
-        ('Permissions', {'fields': ('ogr', 'hoc', 'yon', 'staff', 'admin',)}),
+        ('Permissions', {'fields': ('ogr', 'hoc', 'yon', 'staff', 'active',)}),
     )
 
     add_fieldsets = (
@@ -33,11 +33,12 @@ class UserAdmin(BaseUserAdmin):
 
 class FakulteAdmin(admin.ModelAdmin):
     list_display = ('fakulte_kodu', 'fakulte_adi')
+    ordering = ('fakulte_kodu',)
 
-#class OgrenciAdmin(admin.ModelAdmin):
-#    search_fields = ('ogrenci_no',)
+class OgrenciAdmin(admin.ModelAdmin):
+    search_fields = ('ogrenci_no',)
 
-#    list_display = ('ogrenci_no', 'ad', 'soyad', 'bolum_kodu', 'bolum')
+    list_display = ('ogrenci_no', 'ad', 'soyad', 'bolum_kodu', 'bolum')
 
 
 admin.site.register(User, UserAdmin)

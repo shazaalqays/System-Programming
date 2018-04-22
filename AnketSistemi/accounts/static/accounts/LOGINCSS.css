@@ -38,11 +38,19 @@ body
     margin-top: 100px;
     float: left
 }
+
 .section h1
 {
     font-family: "Times New Roman", Times, serif;
     font-size: 100%;
 }
+
+.section h2
+{
+  margin-top: 40px;
+  font-size: 50%;
+}
+
 .section input[type="text"],
 .section input[type="password"]
 {

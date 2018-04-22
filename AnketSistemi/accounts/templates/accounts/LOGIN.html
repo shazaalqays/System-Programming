@@ -19,6 +19,9 @@
                     <h1>USERNAME<br><input type="text" name="username" maxlength="20" /></h1>
                     <h1>PASSWORD<br><input type="password" name="password"/></h1>
                     <input type="submit" value="LOG IN"/>
+                    {% if form.errors %}
+                        <h2>Hatalı bilgi.</h2>
+                    {% endif %}
                 </div>
                 <img src="{% static 'accounts/ytulogo.png' %}" alt="ytulogo">
                 <line></line>

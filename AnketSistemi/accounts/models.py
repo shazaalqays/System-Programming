@@ -97,9 +97,20 @@ class User(AbstractBaseUser):
     def is_admin(self):
         return self.admin
 
+class fakulte(models.Model):
+    fakulte_kodu   = models.CharField(max_length=3,primary_key=True)
+    fakulte_adi    = models.CharField(max_length=50)
+
+
 class bolum(models.Model):
-    bolum_kodu  = models.SmallIntegerField(primary_key=True)
+    bolum_kodu  = models.CharField(max_length=3, primary_key=True)
     bolum_adi   = models.CharField(max_length=50)
+    fakulte_kodu= models.ForeignKey(
+        fakulte,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
 
     def __str__(self):
         return self.bolum_adi
@@ -154,3 +165,134 @@ class hoca(models.Model):
     @property
     def full_name(self):
         return '%s %s' % (self.ad, self.soyad)
+
+class ders(models.Model):
+    ders_kodu   = models.CharField(max_length=7, primary_key=True)
+    grup_no     = models.SmallIntegerField()
+    ders_adi    = models.CharField(max_length=50)
+    hoca_kodu   = models.ForeignKey(
+        hoca,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
+    bolum_kodu  = models.ForeignKey(
+        bolum,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
+    teori       = models.SmallIntegerField()
+    practice    = models.SmallIntegerField()
+    lab         = models.SmallIntegerField()
+    toplam_kredi= models.SmallIntegerField()
+    donem       = models.CharField(max_length=1, default=None)
+    yil         = models.SmallIntegerField()
+
+    def __str__(self):
+        return self.ders_adi
+
+class yonetim(models.Model):
+    bolum_kodu   = models.ForeignKey(
+        bolum,
+        on_delete=models.CASCADE
+    )
+    fakulte_kodu = models.ForeignKey(
+        fakulte,
+        on_delete=models.CASCADE
+    )
+    accountID   = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
+    ad          = models.CharField(max_length=30)
+    soyad       = models.CharField(max_length=30)
+    makam       = models.CharField(max_length=30)
+
+class ogrenci_ders(models.Model):
+    ogrenci_no  = models.ForeignKey(
+        ogrenci,
+        on_delete=models.CASCADE
+    )
+    ders_kodu   = models.ForeignKey(
+        ders,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
+    grup_no     = models.SmallIntegerField()
+
+class fakulte_bolum(models.Model):
+    fakulte_kodu = models.ForeignKey(
+        fakulte,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
+    bolum_kodu   = models.ForeignKey(
+        bolum,
+        on_delete=models.CASCADE
+    )
+
+class ders_anketi(models.Model):
+    ders_kodu   = models.ForeignKey(
+        ders,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
+    sorular     = models.CharField(max_length=30, default='111111111111111100000000000000')
+
+class anket(models.Model):
+    ders_anketleri  = models.ManyToManyField(ders_anketi)
+    ogrenci_no      = models.ForeignKey(
+        ogrenci,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
+    donem           = models.CharField(max_length=1, default=None)
+    yil             = models.SmallIntegerField()
+
+class sonuclar(models.Model):
+    ders_kodu       = models.ForeignKey(
+        ders,
+        on_delete=models.CASCADE
+    )
+    donem           = models.CharField(max_length=1, default=None)
+    yil             = models.SmallIntegerField()
+    grup_no         = models.SmallIntegerField()
+    katilim_orani   = models.FloatField()
+    sonuc01         = models.FloatField(default=0)
+    sonuc02         = models.FloatField(default=0)
+    sonuc03         = models.FloatField(default=0)
+    sonuc04         = models.FloatField(default=0)
+    sonuc05         = models.FloatField(default=0)
+    sonuc06         = models.FloatField(default=0)
+    sonuc07         = models.FloatField(default=0)
+    sonuc08         = models.FloatField(default=0)
+    sonuc09         = models.FloatField(default=0)
+    sonuc10         = models.FloatField(default=0)
+    sonuc11         = models.FloatField(default=0)
+    sonuc12         = models.FloatField(default=0)
+    sonuc13         = models.FloatField(default=0)
+    sonuc14         = models.FloatField(default=0)
+    sonuc15         = models.FloatField(default=0)
+    sonuc16         = models.FloatField(default=0)
+    sonuc17         = models.FloatField(default=0)
+    sonuc18         = models.FloatField(default=0)
+    sonuc19         = models.FloatField(default=0)
+    sonuc20         = models.FloatField(default=0)
+    sonuc21         = models.FloatField(default=0)
+    sonuc22         = models.FloatField(default=0)
+    sonuc23         = models.FloatField(default=0)
+    sonuc24         = models.FloatField(default=0)
+    sonuc25         = models.FloatField(default=0)
+    sonuc26         = models.FloatField(default=0)
+    sonuc27         = models.FloatField(default=0)
+    sonuc28         = models.FloatField(default=0)
+    sonuc29         = models.FloatField(default=0)
+    sonuc30         = models.FloatField(default=0)
+    genelsonuc      = models.FloatField(default=0)

@@ -1,0 +1,243 @@
+
+.html {
+    background: #e6e9e9;
+    background-image: linear-gradient(270deg, rgb(230, 233, 233) 0%, rgb(216, 221, 221) 100%);
+    -webkit-font-smoothing: antialiased;
+}
+
+.body {
+    background: url(logo%20.jpg) repeat 0 0;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
+    color: #545454;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 2em 2em 4em;
+}
+.navbar {
+    width: 200px;
+    float: left;
+    overflow: hidden;
+    background-color: cadetblue;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.general {
+    float: left;
+    overflow: hidden;
+}
+
+.general .generalbtn {
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.navbar a:hover, .general:hover .generalbtn {
+    background-color: antiquewhite;`
+}
+
+.general-content {
+    display: none;
+    position: absolute;
+    background-color: cadetblue;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.general-content a {
+    float: none;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.general-content a:hover {
+    background-color: cadetblue;
+}
+
+.general:hover .general-content {
+    display: block;
+}
+
+.survey {
+    float: left;
+    overflow: hidden;
+}
+
+.survey .surveybtn {
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.navbar a:hover, .survey:hover .surveybtn {
+    background-color: antiquewhite;`
+}
+
+.survey-content {
+    display: none;
+    position: absolute;
+    background-color: cadetblue;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.survey-content a {
+    float: none;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.survey-content a:hover {
+    background-color: antiquewhite;
+}
+
+.survey:hover .survey-content {
+    display: block;
+}
+    
+.navbar2 {
+    width: 200px;
+    float: right;
+    overflow: hidden;
+    background-color: cadetblue;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar2 a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.profile {
+    float: left;
+    overflow: hidden;
+}
+
+.profile .profbtn {
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.navbar2 a:hover, .profile:hover .profbtn {
+    background-color: antiquewhite;`
+}
+
+.prof-content {
+    display: none;
+    position: absolute;
+    background-color: cadetblue;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.prof-content a {
+    float: none;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.prof-content a:hover {
+    background-color: cadetblue;
+}
+
+.profile:hover .prof-content {
+    display: block;
+}
+
+.signout {
+    float: left;
+    overflow: hidden;
+}
+
+.signout .sobtn {
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.navbar2 a:hover, .signout:hover .sobtn {
+    background-color: antiquewhite;`
+}
+
+.signout-content {
+    display: none;
+    position: absolute;
+    background-color: cadetblue;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.signout-content a {
+    float: none;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.signout-content a:hover {
+    background-color: antiquewhite;
+}
+
+.signout:hover .signout-content {
+    display: block;
+}
+.image{
+display:inline-block;
+width:50%;
+}
+
+
+            
+            

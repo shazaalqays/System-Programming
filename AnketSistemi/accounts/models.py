@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager
 )
+from .validators import validate_xls_file_extension
 
 class UserManager(BaseUserManager):
     def create_user(self, username, password=None, is_active=True, is_ogrenci=False,
@@ -97,9 +98,19 @@ class User(AbstractBaseUser):
     def is_admin(self):
         return self.admin
 
+
+
+
+class fakulteManager(models.Manager):
+    def create_fakulte(self, fakultekodu, fakulteadi):
+        fakulte = self.create(fakulte_kodu=fakultekodu, fakulte_adi=fakulteadi)
+        return fakulte
+
 class fakulte(models.Model):
-    fakulte_kodu   = models.CharField(max_length=3,primary_key=True)
-    fakulte_adi    = models.CharField(max_length=50)
+    fakulte_kodu       = models.CharField(max_length=3,primary_key=True)
+    fakulte_adi        = models.CharField(max_length=50)
+
+
 
 
 class bolum(models.Model):
@@ -296,3 +307,10 @@ class sonuclar(models.Model):
     sonuc29         = models.FloatField(default=0)
     sonuc30         = models.FloatField(default=0)
     genelsonuc      = models.FloatField(default=0)
+
+class dosyalar(models.Model):
+    dosya_adi       = models.CharField(max_length=20, default=None, blank=True, null=True)
+    dosya           = models.FileField(upload_to='accounts/dosyalar', validators=[validate_xls_file_extension])
+    tablo           = models.CharField(max_length=20, default=None, blank=False, null=True)
+    donem           = models.CharField(max_length=1, default=None, blank=False, null=True)
+    yil             = models.SmallIntegerField(default=None, blank=False, null=True)

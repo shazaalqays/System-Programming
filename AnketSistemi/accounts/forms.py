@@ -1,7 +1,12 @@
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from .models import User
+from .models import User, fakulte, dosyalar
+#from .validators import validate_xls_file_extension
 
+donemler = (
+    ('G', 'GÜZ'),
+    ('B', 'BAHAR'),
+)
 
 class RegisterForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
@@ -64,3 +69,50 @@ class UserAdminChangeForm(forms.ModelForm):
         # This is done here, rather than on the field, because the
         # field does not have access to the initial value
         return self.initial["password"]
+
+
+class FakulteAddForm(forms.ModelForm):
+#    fakulteler_dosyasi = forms.FileField(label="Fakulteler xls Dosyasi", validators=[validate_xls_file_extension])
+
+    class Meta:
+        model   = fakulte
+        fields  = ('fakulte_kodu', 'fakulte_adi')
+
+
+class DosyalarAdminForm(forms.ModelForm):
+    tablolar    = (
+        ('fakulteler', 'Fakulteler'),
+        ('bolumler', 'Bolumler'),
+        ('fakulte_bolum', 'Fakulte_Bolum'),
+        ('yonetimler', 'Yonetim Uyeleri'),
+        ('hocalar', 'Hocalar'),
+        ('ogrenciler', 'Ogrenciler'),
+        ('dersler', 'Dersler'),
+        ('dersdetaylari', 'Ders Detaylari'),
+        ('ogrenci_ders', 'Ogrenci_Ders'),
+    )
+    tablo       = forms.MultipleChoiceField(choices = tablolar)
+    donem       = forms.MultipleChoiceField(choices = donemler)
+
+    class Meta:
+        model   = dosyalar
+        fields  = ('dosya', 'dosya_adi', 'tablo', 'yil', 'donem')
+
+    def clean_tablo(self):
+        tablo = self.cleaned_data['tablo']
+        if not tablo:
+            raise forms.ValidationError("Tablo bilgisi girilmeli.")
+
+        if len(tablo) > 20:
+            raise forms.ValidationError("Hatali tablo bilgisi.")
+
+        tablo = ''.join(tablo)
+        return tablo
+
+    def clean_donem(self):
+        donem = self.cleaned_data['donem']
+        if not donem:
+            raise forms.ValidationError("Donem bilgisi girilmeli.")
+
+        donem = ''.join(donem)
+        return donem

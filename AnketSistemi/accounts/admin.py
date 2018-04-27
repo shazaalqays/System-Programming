@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .forms import UserAdminCreationForm, UserAdminChangeForm
-from .models import bolum, fakulte, ogrenci, hoca, ders, yonetim, ders_anketi, sonuclar
+from .forms import UserAdminCreationForm, UserAdminChangeForm, FakulteAddForm, DosyalarAdminForm
+from .models import bolum, fakulte, ogrenci, hoca, ders, yonetim, ders_anketi, sonuclar, dosyalar
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth import get_user_model
@@ -32,6 +32,14 @@ class UserAdmin(BaseUserAdmin):
     filter_horizontal = ()
 
 class FakulteAdmin(admin.ModelAdmin):
+    """A ModelAdmin that uses a different form class when adding an object."""
+    def get_form(self, request, obj=None, **kwargs):
+        if obj is None:
+            return FakulteAddForm
+        else:
+            return super(FakulteAdmin, self).get_form(request, obj, **kwargs)
+
+class FakulteAdmin(admin.ModelAdmin):
     list_display = ('fakulte_kodu', 'fakulte_adi')
     ordering = ('fakulte_kodu',)
 
@@ -39,6 +47,17 @@ class OgrenciAdmin(admin.ModelAdmin):
     search_fields = ('ogrenci_no',)
 
     list_display = ('ogrenci_no', 'ad', 'soyad', 'bolum_kodu', 'bolum')
+
+class DosyalarAdmin(admin.ModelAdmin):
+    search_fields = ('dosya_adi', 'tablo', 'yil', 'donem')
+
+    list_display = ('dosya_adi', 'tablo', 'yil', 'donem')
+
+    def get_form(self, request, obj=None, **kwargs):
+        if obj is None:
+            return DosyalarAdminForm
+        else:
+            return super(DosyalarAdmin, self).get_form(request, obj, **kwargs)
 
 
 admin.site.register(User, UserAdmin)
@@ -50,6 +69,7 @@ admin.site.register(ogrenci)
 admin.site.register(ders)
 admin.site.register(ders_anketi)
 admin.site.register(sonuclar)
+admin.site.register(dosyalar, DosyalarAdmin)
 # Register your models here.
 
 # Remove Group Model from admin. We're not using it.

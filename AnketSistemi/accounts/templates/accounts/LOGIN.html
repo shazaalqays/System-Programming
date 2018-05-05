@@ -1,18 +1,15 @@
+{% extends 'base.html' %}
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Anket Sistemi</title>
+      {% block head %}
       {% load static %}
+      <title>Anket Sistemi</title>
       <link rel="stylesheet" href="{% static 'accounts/LOGINCSS.css' %}" type="text/css">
-
-      <link rel="apple-touch-icon" sizes="180x180" href="{% static 'accounts/apple-touch-icon.png' %}">
-      <link rel="icon" type="image/png" sizes="16x16" href="{% static 'accounts/favicon-16x16.png' %}">
-      <link rel="manifest" href="{% static 'accounts/site.webmanifest' %}">
-      <link rel="mask-icon" href="{% static 'accounts/safari-pinned-tab.svg' %}+" color="#5bbad5">
-      <meta name="msapplication-TileColor" content="#da532c">
-      <meta name="theme-color" content="#ffffff">
+      {% endblock %}
     </head>
     <body>
+        {% block body %}
         <form method="post">{% csrf_token %}
             <div class="form-style">
                 <div class="section">
@@ -31,5 +28,6 @@
                 </div>
             </div>
         </form>
+        {% endblock %}
     </body>
 </html>

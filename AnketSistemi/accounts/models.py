@@ -107,8 +107,8 @@ class fakulteManager(models.Manager):
         return fakulte
 
 class fakulte(models.Model):
-    fakulte_kodu       = models.CharField(max_length=3,primary_key=True)
-    fakulte_adi        = models.CharField(max_length=50)
+    fakulte_kodu       = models.CharField(max_length=12,primary_key=True)
+    fakulte_adi        = models.CharField(max_length=60)
 
 
 
@@ -116,12 +116,6 @@ class fakulte(models.Model):
 class bolum(models.Model):
     bolum_kodu  = models.CharField(max_length=3, primary_key=True)
     bolum_adi   = models.CharField(max_length=50)
-    fakulte_kodu= models.ForeignKey(
-        fakulte,
-        on_delete=models.SET_NULL,
-        blank=True,
-        null=True,
-    )
 
     def __str__(self):
         return self.bolum_adi
@@ -137,13 +131,7 @@ class ogrenci(models.Model):
         blank=True,
         null=True,
     )
-    bolum       = models.CharField(max_length=30)
-    accountID   = models.ForeignKey(
-        User,
-        on_delete=models.SET_NULL,
-        blank=True,
-        null=True,
-    )
+    bolum       = models.CharField(max_length=50)
 
     def __str__(self):
         return self.ogrenci_no
@@ -162,13 +150,7 @@ class hoca(models.Model):
         blank=True,
         null=True,
     )
-    bolum       = models.CharField(max_length=30)
-    accountID   = models.ForeignKey(
-        User,
-        on_delete=models.SET_NULL,
-        blank=True,
-        null=True,
-    )
+    bolum       = models.CharField(max_length=50)
 
     def __str__(self):
         return self.hoca_kodu
@@ -177,8 +159,27 @@ class hoca(models.Model):
     def full_name(self):
         return '%s %s' % (self.ad, self.soyad)
 
-class ders(models.Model):
+class dersdetaylari(models.Model):
     ders_kodu   = models.CharField(max_length=7, primary_key=True)
+    ders_adi    = models.CharField(max_length=50)
+    teori       = models.SmallIntegerField()
+    practice    = models.SmallIntegerField()
+    lab         = models.SmallIntegerField()
+    toplam_kredi= models.SmallIntegerField()
+    acilan_bolum_kodu  = models.ForeignKey(
+        bolum,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
+
+class ders(models.Model):
+    ders_kodu   = models.ForeignKey(
+        dersdetaylari,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
     grup_no     = models.SmallIntegerField()
     ders_adi    = models.CharField(max_length=50)
     hoca_kodu   = models.ForeignKey(
@@ -187,18 +188,6 @@ class ders(models.Model):
         blank=True,
         null=True,
     )
-    bolum_kodu  = models.ForeignKey(
-        bolum,
-        on_delete=models.SET_NULL,
-        blank=True,
-        null=True,
-    )
-    teori       = models.SmallIntegerField()
-    practice    = models.SmallIntegerField()
-    lab         = models.SmallIntegerField()
-    toplam_kredi= models.SmallIntegerField()
-    donem       = models.CharField(max_length=1, default=None)
-    yil         = models.SmallIntegerField()
 
     def __str__(self):
         return self.ders_adi
@@ -212,27 +201,44 @@ class yonetim(models.Model):
         fakulte,
         on_delete=models.CASCADE
     )
+    ad          = models.CharField(max_length=30)
+    soyad       = models.CharField(max_length=30)
+    makam       = models.CharField(max_length=30)
+
+
+class kullanici_account(models.Model):
     accountID   = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
     )
-    ad          = models.CharField(max_length=30)
-    soyad       = models.CharField(max_length=30)
-    makam       = models.CharField(max_length=30)
 
-class ogrenci_ders(models.Model):
     ogrenci_no  = models.ForeignKey(
         ogrenci,
-        on_delete=models.CASCADE
-    )
-    ders_kodu   = models.ForeignKey(
-        ders,
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
     )
+
+    hoca_kodu   = models.ForeignKey(
+        hoca,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
+
+    yonetim_id   = models.ForeignKey(
+        yonetim,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
+
+
+class ogrenci_ders(models.Model):
+    ogrenci_no  = models.CharField(max_length=8, default=00000000)
+    ders_kodu   = models.CharField(max_length=7, default=0000000)
     grup_no     = models.SmallIntegerField()
 
 class fakulte_bolum(models.Model):
@@ -307,10 +313,3 @@ class sonuclar(models.Model):
     sonuc29         = models.FloatField(default=0)
     sonuc30         = models.FloatField(default=0)
     genelsonuc      = models.FloatField(default=0)
-
-class dosyalar(models.Model):
-    dosya_adi       = models.CharField(max_length=20, default=None, blank=True, null=True)
-    dosya           = models.FileField(upload_to='accounts/dosyalar', validators=[validate_xls_file_extension])
-    tablo           = models.CharField(max_length=20, default=None, blank=False, null=True)
-    donem           = models.CharField(max_length=1, default=None, blank=False, null=True)
-    yil             = models.SmallIntegerField(default=None, blank=False, null=True)

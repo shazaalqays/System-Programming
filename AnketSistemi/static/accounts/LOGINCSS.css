@@ -1,0 +1,103 @@
+body
+{
+    background-image: url(background.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+<style type = "text/css">
+.form-style
+{
+    color: #A29061;
+    font-size: 100%;
+    margin-top: 80px;
+}
+.form-style img
+{
+    height: 645px;
+    width: auto;
+    float: right;
+    margin-right: 3%;
+}
+.form-style line
+{
+    margin-left: 13%;
+    margin-top: 100px;
+    height: 460px;
+    border-right: 1px solid #A29061;
+    position: absolute;
+    float: left;
+}
+
+
+.section
+{
+    color: #A29061;
+    font-size: 40px;
+    margin-left: 15%;
+    margin-top: 100px;
+    float: left
+}
+
+.section h1
+{
+    font-family: "Times New Roman", Times, serif;
+    font-size: 100%;
+}
+
+.section h2
+{
+  margin-top: 40px;
+  font-size: 50%;
+}
+
+.section input[type="text"],
+.section input[type="password"]
+{
+    margin-left:auto;
+    padding: 3px;
+    font-size: 50%;
+    border: none;
+    background: #A29061;
+}
+.section input[type=submit]
+{
+    background: #A29061;
+    border: none;
+    border-radius: 8px;
+    float: right;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 100%;
+    color: #262262;
+}
+.section input[type=submit]:hover
+{
+    background: #262262;
+    border: none;
+    border-radius: 8px;
+    float: right;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 100%;
+    color: #A29061;
+}
+
+
+.section2
+{
+    color: #A29061;
+    margin-left: 8%;
+    margin-top: 6%;
+    float: left;
+}
+.section2 a1
+{
+    font-family: "Times New Roman", Times, serif;
+    font-size: 50px;
+}
+.section2 a2
+{
+    font-family: "Times New Roman", Times, serif;
+    font-size: 25px;
+    margin-left: 35%
+}
+</style>

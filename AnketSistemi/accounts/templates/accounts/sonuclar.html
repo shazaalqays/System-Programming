@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    {% load static %}
+    <title>HOCA</title>
+    <link rel="stylesheet" href="{% static 'accounts/HOME.css' %}" type="text/css">
+{% endblock %}
+
+{% block body %}
+    <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a class="active" href="/sonuclar">Sonuclar</a></li>
+        <li><a href="/profil">Profil</a></li>
+        <li><a href="/">Log out</a></li>
+    </ul>
+    <w2 class="ontop">
+    {% for soru in sorular %}
+        {{ soru }}<br></br>
+        {% if forloop.counter == 1 %}
+            {{ soru01 }}<br></br>
+        {% endif %}
+        {% if forloop.counter == 2 %}
+            {{ soru02 }}<br></br>
+        {% endif %}
+        {% if forloop.counter == 3 %}
+            {{ soru03 }}<br></br>
+        {% endif %}
+        {% if forloop.counter == 4 %}
+            {{ soru04 }}<br></br>
+        {% endif %}
+        {% if forloop.counter == 5 %}
+            {{ soru05 }}<br></br>
+        {% endif %}
+        {% if forloop.counter == 6 %}
+            {{ soru06 }}<br></br>
+        {% endif %}
+        {% if forloop.counter == 7 %}
+            {{ soru07 }}<br></br>
+        {% endif %}
+        {% if forloop.counter == 8 %}
+            {{ soru08 }}<br></br>
+        {% endif %}
+        {% if forloop.counter == 9 %}
+            {{ soru09 }}<br></br>
+        {% endif %}
+        {% if forloop.counter == 10 %}
+            {{ soru10 }}<br></br>
+        {% endif %}
+        {% if forloop.counter == 11 %}
+            {{ soru11 }}<br></br>
+        {% endif %}
+        {% if forloop.counter == 12 %}
+            {{ soru12 }}<br></br>
+        {% endif %}
+        {% if forloop.counter == 13 %}
+            {{ soru13 }}<br></br>
+        {% endif %}
+        {% if forloop.counter == 14 %}
+            {{ soru14 }}<br></br>
+        {% endif %}
+        {% if forloop.counter == 15 %}
+            {{ soru15 }}<br></br>
+        {% endif %}
+        {% if forloop.counter == 16 %}
+            {{ soru16 }}<br></br>
+        {% endif %}
+    {% endfor %}
+    </w2>
+    <div class="box">
+    </div>
+{% endblock %}

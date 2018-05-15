@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    {% load static %}
+    <title>OGRENCI</title>
+    <link rel="stylesheet" href="{% static 'accounts/HOME.css' %}" type="text/css">
+{% endblock %}
+
+{% block body %}
+    <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a class="active" href="/anket">Anket</a></li>
+        <li><a href="/profil">Profil</a></li>
+        <li><a href="/">Log out</a></li>
+    </ul>
+    <w2 class="ontop">
+        {% for d in dersler %}
+            {{ d.ders_kodu.ders_adi }}<br></br>
+            Grup No: {{ d.grup_no }}<br></br>
+            {{ d.hoca_kodu.ad }}
+            {{ d.hoca_kodu.soyad }}<br></br><br></br>
+            <form method="POST" action="../sonucolustur/">{% csrf_token %}
+            {% for soru in sorular %}
+                {{ soru }}
+                <br></br>
+                  <input type="HIDDEN" name="derskodu" value="{{ d.ders_kodu.ders_kodu }}"/>
+                  <input type="HIDDEN" name="dersgrubu" value="{{ d.grup_no }}"/>
+                  <input type="RADIO" value="1" name="{{ forloop.counter }}">
+                      Kesinlikle Katılmıyorum
+                  </input>
+                  <input type="RADIO" value="2" name="{{ forloop.counter }}">
+                      Katılmıyorum
+                  </input>
+                  <input type="RADIO" value="3" name="{{ forloop.counter }}">
+                      Yorumsuz
+                  </input>
+                  <input type="RADIO" value="4" name="{{ forloop.counter }}">
+                      Katılıyorum
+                  </input>
+                  <input type="RADIO" value="5" name="{{ forloop.counter }}">
+                      Kesinlikle Katılıyorum
+                  </input><br></br><br></br>
+            {% endfor %}
+            <div class="input_style">
+              <input type="submit" value="ONAYLA"/>
+            </div>
+            </form>
+            <br></br><br></br><br></br>
+        {% endfor %}
+    </w2>
+    <div class="box">
+    </div>
+{% endblock %}

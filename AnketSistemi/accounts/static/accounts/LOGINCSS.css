@@ -2,7 +2,8 @@ body
 {
     background-image: url(background.jpg);
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: 1366px 678px;
+    background-color: black;
 }
 
 <style type = "text/css">
@@ -36,7 +37,7 @@ body
     font-size: 40px;
     margin-left: 15%;
     margin-top: 100px;
-    float: left
+    float: left;
 }
 
 .section h1
@@ -98,6 +99,6 @@ body
 {
     font-family: "Times New Roman", Times, serif;
     font-size: 25px;
-    margin-left: 35%
+    margin-left: 35%;
 }
 </style>

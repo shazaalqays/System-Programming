@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from .models import User, fakulte, ders
+from .models import User, fakulte, ders, sonuclar
 #from .validators import validate_xls_file_extension
 
 donemler = (

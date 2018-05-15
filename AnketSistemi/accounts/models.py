@@ -12,7 +12,7 @@ class UserManager(BaseUserManager):
         user_obj = self.model(
             username = username
         )
-        user_obj.set_password(username)
+        user_obj.set_password(password)
         user_obj.ogr        = is_ogrenci
         user_obj.hoc        = is_hoca
         user_obj.yon        = is_yonetim
@@ -70,7 +70,7 @@ class User(AbstractBaseUser):
     REQUIRED_FIELDS = []
 
     def __str__(self):
-        return self.username
+        return '%s %s' %(self.ad,self.soyad)
 
     def has_perm(self, perm, obj=None):
         return True
@@ -110,12 +110,17 @@ class fakulte(models.Model):
     fakulte_kodu       = models.CharField(max_length=12,primary_key=True)
     fakulte_adi        = models.CharField(max_length=60)
 
+    class Meta:
+        verbose_name_plural = "Fakulteler"
 
 
 
 class bolum(models.Model):
     bolum_kodu  = models.CharField(max_length=3, primary_key=True)
     bolum_adi   = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name_plural = "Bölümler"
 
     def __str__(self):
         return self.bolum_adi
@@ -133,8 +138,11 @@ class ogrenci(models.Model):
     )
     bolum       = models.CharField(max_length=50)
 
+    class Meta:
+        verbose_name_plural = "Öğrenciler"
+
     def __str__(self):
-        return self.ogrenci_no
+        return '%s %s' %(self.ad,self.soyad)
 
     @property
     def full_name(self):
@@ -151,6 +159,9 @@ class hoca(models.Model):
         null=True,
     )
     bolum       = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name_plural = "Hocalar"
 
     def __str__(self):
         return self.hoca_kodu
@@ -173,6 +184,10 @@ class dersdetaylari(models.Model):
         null=True,
     )
 
+    class Meta:
+        verbose_name_plural = "Ders Detayları"
+
+
 class ders(models.Model):
     ders_kodu   = models.ForeignKey(
         dersdetaylari,
@@ -189,8 +204,12 @@ class ders(models.Model):
         null=True,
     )
 
+    class Meta:
+        verbose_name_plural = "Dersler"
+
     def __str__(self):
         return self.ders_adi
+
 
 class yonetim(models.Model):
     bolum_kodu   = models.ForeignKey(
@@ -204,6 +223,9 @@ class yonetim(models.Model):
     ad          = models.CharField(max_length=30)
     soyad       = models.CharField(max_length=30)
     makam       = models.CharField(max_length=30)
+
+    class Meta:
+        verbose_name_plural = "Yönetim"
 
 
 class kullanici_account(models.Model):
@@ -241,6 +263,10 @@ class ogrenci_ders(models.Model):
     ders_kodu   = models.CharField(max_length=7, default=0000000)
     grup_no     = models.SmallIntegerField()
 
+    class Meta:
+        verbose_name_plural = "Öğrenci_Ders Tablosu"
+
+
 class fakulte_bolum(models.Model):
     fakulte_kodu = models.ForeignKey(
         fakulte,
@@ -253,6 +279,10 @@ class fakulte_bolum(models.Model):
         on_delete=models.CASCADE
     )
 
+    class Meta:
+        verbose_name_plural = "Fakülte_Bölüm Tablosu"
+
+
 class ders_anketi(models.Model):
     ders_kodu   = models.ForeignKey(
         ders,
@@ -261,6 +291,10 @@ class ders_anketi(models.Model):
         null=True,
     )
     sorular     = models.CharField(max_length=30, default='111111111111111100000000000000')
+
+    class Meta:
+        verbose_name_plural = "Ders Anketleri"
+
 
 class anket(models.Model):
     ders_anketleri  = models.ManyToManyField(ders_anketi)
@@ -273,15 +307,17 @@ class anket(models.Model):
     donem           = models.CharField(max_length=1, default=None)
     yil             = models.SmallIntegerField()
 
+    class Meta:
+        verbose_name_plural = "Anketler"
+
+
 class sonuclar(models.Model):
-    ders_kodu       = models.ForeignKey(
-        ders,
-        on_delete=models.CASCADE
-    )
-    donem           = models.CharField(max_length=1, default=None)
-    yil             = models.SmallIntegerField()
+    ders_kodu   = models.CharField(max_length=7, default=None)
+    ogrenci_no  = models.CharField(max_length=8, default=None)
+#    donem           = models.CharField(max_length=1, default=None)
+#    yil             = models.SmallIntegerField()
     grup_no         = models.SmallIntegerField()
-    katilim_orani   = models.FloatField()
+#    katilim_orani   = models.FloatField()
     sonuc01         = models.FloatField(default=0)
     sonuc02         = models.FloatField(default=0)
     sonuc03         = models.FloatField(default=0)
@@ -298,18 +334,31 @@ class sonuclar(models.Model):
     sonuc14         = models.FloatField(default=0)
     sonuc15         = models.FloatField(default=0)
     sonuc16         = models.FloatField(default=0)
-    sonuc17         = models.FloatField(default=0)
-    sonuc18         = models.FloatField(default=0)
-    sonuc19         = models.FloatField(default=0)
-    sonuc20         = models.FloatField(default=0)
-    sonuc21         = models.FloatField(default=0)
-    sonuc22         = models.FloatField(default=0)
-    sonuc23         = models.FloatField(default=0)
-    sonuc24         = models.FloatField(default=0)
-    sonuc25         = models.FloatField(default=0)
-    sonuc26         = models.FloatField(default=0)
-    sonuc27         = models.FloatField(default=0)
-    sonuc28         = models.FloatField(default=0)
-    sonuc29         = models.FloatField(default=0)
-    sonuc30         = models.FloatField(default=0)
-    genelsonuc      = models.FloatField(default=0)
+#    sonuc17         = models.FloatField(default=0)
+#    sonuc18         = models.FloatField(default=0)
+#    sonuc19         = models.FloatField(default=0)
+#    sonuc20         = models.FloatField(default=0)
+#    sonuc21         = models.FloatField(default=0)
+#    sonuc22         = models.FloatField(default=0)
+#    sonuc23         = models.FloatField(default=0)
+#    sonuc24         = models.FloatField(default=0)
+#    sonuc25         = models.FloatField(default=0)
+#    sonuc26         = models.FloatField(default=0)
+#    sonuc27         = models.FloatField(default=0)
+#    sonuc28         = models.FloatField(default=0)
+#    sonuc29         = models.FloatField(default=0)
+#    sonuc30         = models.FloatField(default=0)
+#    genelsonuc      = models.FloatField(default=0)
+
+    class Meta:
+        verbose_name_plural = "Sonuçlar"
+
+
+class sorular(models.Model):
+    soru           = models.CharField(max_length=512, default=None)
+
+    class Meta:
+        verbose_name_plural = "Sorular"
+
+    def __str__(self):
+        return self.soru

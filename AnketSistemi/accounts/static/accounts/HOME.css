@@ -2,23 +2,112 @@ body
 {
   background-image: url(background.jpg);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 1366px 678px;
+  background-color: black;
 }
 
-<style type = "text/css">
-.home-style
+ul {
+    position: relative;
+    list-style-type: none;
+    margin-top: 10px;
+    margin-left: 100px;
+    margin-right: 100px;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: #A29061;
+    text-align: center;
+    padding: 14px 119px;
+    text-decoration: none;
+}
+
+li a2 {
+    display: block;
+    color: #A29061;
+    text-align: center;
+    padding: 14px 120.9px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+li a2:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #262262;
+}
+
+w1{
+    color: #A29061;
+    font-size: 20px;
+    margin-left: 150px;
+    margin-top: 10px;
+    float: left;
+    z-index:2;
+}
+
+w2{
+    color: #A29061;
+    font-size: 20px;
+    margin-left: 150px;
+    margin-top: 10px;
+    float: left;
+    z-index:2;
+}
+
+w2.ontop{
+    position: relative;
+    color: #A29061;
+    font-size: 20px;
+    margin-left: 150px;
+    margin-top: 10px;
+    float: left;
+    z-index:2;
+}
+
+.box {
+    position: static;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+    filter: alpha(opacity=30);
+    opacity: 0.7;
+    background-color: black;
+    margin-left: 100px;
+    width: 1150px;
+    height:550px;
+    border-radius:3px;
+    z-index:1;
+}
+
+.input_style input[type=submit]
 {
-  color: #A29061;
-  font-size: 100%;
-  margin-top: 80px;
+    background: #A29061;
+    border: none;
+    border-radius: 8px;
+    float: right;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 100%;
+    color: #262262;
 }
 
-.home-style img
+.input_style input[type=submit]:hover
 {
-  height: 633px;
-  width: auto;
-  transform: scale(0.5);
-  margin-left: 27.5%;
+    background: #262262;
+    border: none;
+    border-radius: 8px;
+    float: right;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 100%;
+    color: #A29061;
 }
-
-</style>

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .forms import UserAdminCreationForm, UserAdminChangeForm
-from .models import bolum, fakulte, ogrenci, hoca, ders, dersdetaylari, yonetim, ders_anketi, sonuclar, ogrenci_ders, fakulte_bolum, kullanici_account
+from .models import bolum, fakulte, ogrenci, hoca, ders, dersdetaylari, yonetim, ders_anketi, sonuclar, ogrenci_ders, fakulte_bolum, kullanici_account, sorular
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth import get_user_model
@@ -103,9 +103,9 @@ class DersAnketiAdmin(admin.ModelAdmin):
 
 
 class SonuclarAdmin(admin.ModelAdmin):
-    search_fields = ['ders_kodu','donem','yil','katilim_orani']
+    search_fields = ['ders_kodu','ogrenci_no']
 
-    list_display = ('ders_kodu','donem','yil','grup_no','katilim_orani')
+    list_display = ('ders_kodu','ogrenci_no')
     ordering = ('ders_kodu',)
 
 
@@ -123,19 +123,25 @@ class KullaniciAccountAdmin(admin.ModelAdmin):
     ordering = ('accountID',)
 
 
+class SorularAdmin(admin.ModelAdmin):
+    list_display = ('id','soru',)
+    ordering = ('id',)
+
+
 admin.site.register(User, UserAdmin)
 admin.site.register(fakulte, FakulteAdmin)
 admin.site.register(bolum, BolumAdmin)
-admin.site.register(yonetim, YonetimAdmin)
+#admin.site.register(yonetim, YonetimAdmin)
 admin.site.register(hoca, HocaAdmin)
 admin.site.register(ogrenci, OgrenciAdmin)
 admin.site.register(ders, DersAdmin)
 admin.site.register(dersdetaylari, DersDetaylariAdmin)
-admin.site.register(ders_anketi, DersAnketiAdmin)
+#admin.site.register(ders_anketi, DersAnketiAdmin)
 admin.site.register(sonuclar, SonuclarAdmin)
 admin.site.register(ogrenci_ders, OgreciDersAdmin)
 admin.site.register(fakulte_bolum, FakulteBolumAdmin)
-admin.site.register(kullanici_account, KullaniciAccountAdmin)
+#admin.site.register(kullanici_account, KullaniciAccountAdmin)
+admin.site.register(sorular, SorularAdmin)
 # Register your models here.
 
 # Remove Group Model from admin. We're not using it.

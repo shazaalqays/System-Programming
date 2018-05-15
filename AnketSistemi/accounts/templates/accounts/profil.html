@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    {% load static %}
+    {% if user.ogr %}
+      <title>OGRENCI</title>
+    {% endif %}
+    {% if user.hoc %}
+      <title>HOCA</title>
+    {% endif %}
+    <link rel="stylesheet" href="{% static 'accounts/HOME.css' %}" type="text/css">
+{% endblock %}
+
+{% block body %}
+    <ul>
+        <li><a href="/home">Home</a></li>
+        {% if user.ogr %}
+            <li><a href="/anket">Anket</a></li>
+        {% endif %}
+        {% if user.hoc %}
+            <li><a href="/sonuclar">Sonuclar</a></li>
+        {% endif %}
+        <li><a class="active" href="/profil">Profil</a></li>
+        <li><a href="/">Log out</a></li>
+    </ul>
+
+        {% if user.ogr %}
+            <w2 class="ontop">
+                {% for p in profil %}
+                    <big>AD:</big> {{ p.ad }}<br></br>
+                    <big>SOYAD:</big> {{ p.soyad }}<br></br>
+                    <big>BÖLÜM:</big> {{ p.bolum }}<br></br>
+                {% endfor %}
+            </w2>
+            <w2 class="ontop">
+                <big><big>Aldigi Dersler:</big></big>
+                <br></br>
+                {% for d in dersdetaylari %}
+                    {{ d.ders_kodu }}
+                    {{ d.ders_adi }}<br></br>
+                {% endfor %}
+            </w2>
+            <div class="box">
+            </div>
+        {% endif %}
+        {% if user.hoc %}
+            <w2 class="ontop">
+                {% for p in profil %}
+                    <big>AD:</big> {{ p.ad }}<br></br>
+                    <big>SOYAD:</big> {{ p.soyad }}<br></br>
+                    <big>BÖLÜM:</big> {{ p.bolum }}<br></br>
+                {% endfor %}
+            </w2>
+            <w2 class="ontop">
+                <big><big>Verdiği Dersler:</big></big>
+                <br></br>
+                {% for d in dersler %}
+                    {{ d.ders_kodu.ders_kodu }}
+                    {{ d.ders_adi }}
+                    GRUP:
+                    {{ d.grup_no }}<br></br>
+                {% endfor %}
+            </w2>
+            <div class="box">
+            </div>
+        {% endif %}
+{% endblock %}

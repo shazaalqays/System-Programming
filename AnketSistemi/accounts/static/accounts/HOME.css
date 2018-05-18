@@ -77,6 +77,47 @@ w2.ontop{
     z-index:2;
 }
 
+d1{
+    color: #A29061;
+    font-size: 15px;
+    margin-left: 150px;
+    margin-top: 10px;
+    float: left;
+    z-index:2;
+}
+
+d1.ontop{
+    position: relative;
+    color: #A29061;
+    font-size: 15px;
+    margin-left: 150px;
+    margin-top: 10px;
+    float: left;
+    z-index:2;
+}
+
+.ontop table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 10px;
+    width: 87.5%;
+    text-align: center;
+    font-size: 90%;
+}
+
+table#rapor tr:nth-child(even) {
+    color: black;
+    background-color: #b7b3e5;
+}
+table#rapor tr:nth-child(odd) {
+    color: black;
+    background-color: #dbd9f2;
+}
+table#rapor th {
+    color: #A29061;
+    background-color: #262262;
+}
+
 .box {
     position: static;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";

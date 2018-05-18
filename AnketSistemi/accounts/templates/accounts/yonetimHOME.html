@@ -1,21 +1,21 @@
 {% extends 'base.html' %}
 <!DOCTYPE html>
-<html>
-    <head>
-    {% block head %}
-        {% load static %}
-        <title>YONETIM</title>
-        <link rel="stylesheet" href="{% static 'accounts/HOME.css' %}" type="text/css">
-    {% endblock %}
-    </head>
-  <body>
-    {% block body %}
+{% block head %}
+    {% load static %}
+    <title>YONETIM</title>
+    <link rel="stylesheet" href="{% static 'accounts/HOME.css' %}" type="text/css">
+{% endblock %}
+
+{% block body %}
     <ul>
-        <li><a2 class="active" href="#home">Home</a2></li>
-        <li><a2 href="#sonuclar">Sonuclar</a2></li>
-        <li><a2 href="#profil">Profil</a2></li>
-        <li><a2 href="/">Log out</a2></li>
+        <li><a class="active" href="/home">Home</a></li>
+        <li><a href="/sonuclar">Sonuclar</a></li>
+        <li><a href="/profil">Profil</a></li>
+        <li><a href="/">Log out</a></li>
     </ul>
-    {% endblock %}
-  </body>
-</html>
+    <w2 class="ontop">
+        HOŞ GELDİNİZ
+    </w2>
+    <div class="box">
+    </div>
+{% endblock %}

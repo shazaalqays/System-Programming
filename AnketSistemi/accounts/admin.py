@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .forms import UserAdminCreationForm, UserAdminChangeForm
+from .forms import UserAdminCreationForm, UserAdminChangeForm, YonetimForm
 from .models import bolum, fakulte, ogrenci, hoca, ders, dersdetaylari, yonetim, ders_anketi, sonuclar, ogrenci_ders, fakulte_bolum, kullanici_account, sorular
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
@@ -8,6 +8,12 @@ from import_export.admin import ImportExportActionModelAdmin
 from import_export import resources
 
 User = get_user_model()
+
+donemler = (
+    ('G', 'GÜZ'),
+    ('B', 'BAHAR'),
+)
+
 
 class UserAdmin(BaseUserAdmin):
     form = UserAdminChangeForm
@@ -52,14 +58,16 @@ class HocaAdmin(admin.ModelAdmin):
 
 
 class YonetimAdmin(admin.ModelAdmin):
-    search_fields = ['bolum_kodu','fakulte_kodu','ad','soyad','makam']
+    search_fields = ['ad','soyad','makam']
+
+    form = YonetimForm
 
     list_display = ('bolum_kodu','fakulte_kodu','ad','soyad','makam')
     ordering = ('makam',)
 
 
 class OgrenciAdmin(admin.ModelAdmin):
-    search_fields = ('ogrenci_no',)
+    search_fields = ['ogrenci_no','ad', 'soyad', 'bolum']
 
     list_display = ('ogrenci_no', 'ad', 'soyad', 'bolum_kodu', 'bolum')
 
@@ -131,7 +139,7 @@ class SorularAdmin(admin.ModelAdmin):
 admin.site.register(User, UserAdmin)
 admin.site.register(fakulte, FakulteAdmin)
 admin.site.register(bolum, BolumAdmin)
-#admin.site.register(yonetim, YonetimAdmin)
+admin.site.register(yonetim, YonetimAdmin)
 admin.site.register(hoca, HocaAdmin)
 admin.site.register(ogrenci, OgrenciAdmin)
 admin.site.register(ders, DersAdmin)

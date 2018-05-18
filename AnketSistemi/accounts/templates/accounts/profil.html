@@ -20,10 +20,12 @@
         {% if user.hoc %}
             <li><a href="/sonuclar">Sonuclar</a></li>
         {% endif %}
+        {% if user.yon %}
+            <li><a href="/sonuclar">Sonuclar</a></li>
+        {% endif %}
         <li><a class="active" href="/profil">Profil</a></li>
         <li><a href="/">Log out</a></li>
     </ul>
-
         {% if user.ogr %}
             <w2 class="ontop">
                 {% for p in profil %}
@@ -59,6 +61,30 @@
                     {{ d.ders_adi }}
                     GRUP:
                     {{ d.grup_no }}<br></br>
+                {% endfor %}
+            </w2>
+            <div class="box">
+            </div>
+        {% endif %}
+        {% if user.yon %}
+            <w2 class="ontop">
+                {% for p in profil %}
+                    <big>AD:</big> {{ p.ad }}<br></br>
+                    <big>SOYAD:</big> {{ p.soyad }}<br></br>
+                    <big>MAKAM:</big>
+                    {% if p.makam == 'UY'%}
+                        Üst Yönetim
+                    {% endif %}
+                    {% if p.makam == 'FY'%}
+                        Fakülte Yönetimi<br></br>
+                        <big>FAKÜLTE:</big> {{ p.fakulte_kodu.fakulte_adi }}<br></br>
+                    {% endif %}
+                    {% if p.makam == 'BY'%}
+                        Bölüm Yönetimi<br></br>
+                        <big>FAKÜLTE:</big> {{ p.fakulte_kodu.fakulte_adi }}<br></br>
+                        <big>BÖLÜM:</big> {{ p.bolum_kodu.bolum_adi }}<br></br>
+                    {% endif %}
+                    <br></br>
                 {% endfor %}
             </w2>
             <div class="box">

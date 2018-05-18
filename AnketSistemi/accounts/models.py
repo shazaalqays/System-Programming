@@ -212,13 +212,18 @@ class ders(models.Model):
 
 
 class yonetim(models.Model):
+    YonetimID     = models.CharField(max_length=8, default=00000000, primary_key=True)
     bolum_kodu   = models.ForeignKey(
         bolum,
-        on_delete=models.CASCADE
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
     )
     fakulte_kodu = models.ForeignKey(
         fakulte,
-        on_delete=models.CASCADE
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
     )
     ad          = models.CharField(max_length=30)
     soyad       = models.CharField(max_length=30)
@@ -327,27 +332,6 @@ class sonuclar(models.Model):
     sonuc07         = models.FloatField(default=0)
     sonuc08         = models.FloatField(default=0)
     sonuc09         = models.FloatField(default=0)
-    sonuc10         = models.FloatField(default=0)
-    sonuc11         = models.FloatField(default=0)
-    sonuc12         = models.FloatField(default=0)
-    sonuc13         = models.FloatField(default=0)
-    sonuc14         = models.FloatField(default=0)
-    sonuc15         = models.FloatField(default=0)
-    sonuc16         = models.FloatField(default=0)
-#    sonuc17         = models.FloatField(default=0)
-#    sonuc18         = models.FloatField(default=0)
-#    sonuc19         = models.FloatField(default=0)
-#    sonuc20         = models.FloatField(default=0)
-#    sonuc21         = models.FloatField(default=0)
-#    sonuc22         = models.FloatField(default=0)
-#    sonuc23         = models.FloatField(default=0)
-#    sonuc24         = models.FloatField(default=0)
-#    sonuc25         = models.FloatField(default=0)
-#    sonuc26         = models.FloatField(default=0)
-#    sonuc27         = models.FloatField(default=0)
-#    sonuc28         = models.FloatField(default=0)
-#    sonuc29         = models.FloatField(default=0)
-#    sonuc30         = models.FloatField(default=0)
 #    genelsonuc      = models.FloatField(default=0)
 
     class Meta:

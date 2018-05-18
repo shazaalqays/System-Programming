@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from .models import User, fakulte, ders, sonuclar
+from .models import User, fakulte, ders, sonuclar, yonetim
 #from .validators import validate_xls_file_extension
 
 donemler = (
@@ -69,3 +69,16 @@ class UserAdminChangeForm(forms.ModelForm):
         # This is done here, rather than on the field, because the
         # field does not have access to the initial value
         return self.initial["password"]
+
+class YonetimForm(forms.ModelForm):
+    makamlar = (
+        ('BY', 'Bölüm Yönetimi'),
+        ('FY', 'Fakülte Yönetimi'),
+        ('UY', 'Üst Yönetim'),
+    )
+
+    class Meta:
+        model = yonetim
+        fields = ('YonetimID', 'makam', 'bolum_kodu', 'fakulte_kodu', 'ad', 'soyad')
+
+    makam = forms.ChoiceField(choices=makamlar)

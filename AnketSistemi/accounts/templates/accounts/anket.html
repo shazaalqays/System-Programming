@@ -11,35 +11,48 @@
         <li><a href="/home">Home</a></li>
         <li><a class="active" href="/anket">Anket</a></li>
         <li><a href="/profil">Profil</a></li>
-        <li><a href="/">Log out</a></li>
+        <li><a href="/logout">Log out</a></li>
     </ul>
+
     <w2 class="ontop">
+        {% if hata == True %}
+            <small><small>Ankette eksik bilgi mevcut olduğu için kabul edilmemiştir.<br></br>
+            Lütfen anketi bir kez daha doldurun.</small></small><br></br><br></br>
+        {% endif %}
         {% for d in dersler %}
+            <big>
             {{ d.ders_kodu.ders_adi }}<br></br>
             Grup No: {{ d.grup_no }}<br></br>
             {{ d.hoca_kodu.ad }}
-            {{ d.hoca_kodu.soyad }}<br></br><br></br>
+            {{ d.hoca_kodu.soyad }}
+            </big><br></br><br></br>
+
             <form method="POST" action="../sonucolustur/">{% csrf_token %}
             {% for soru in sorular %}
                 {{ soru }}
-                <br></br>
+                <br></br><small>
                   <input type="HIDDEN" name="derskodu" value="{{ d.ders_kodu.ders_kodu }}"/>
                   <input type="HIDDEN" name="dersgrubu" value="{{ d.grup_no }}"/>
                   <input type="RADIO" value="1" name="{{ forloop.counter }}">
-                      Kesinlikle Katılmıyorum
+                      <font color=#a29061>Kesinlikle Katılmıyorum</font>
+                      <span style="display:inline-block; width: 70px;"></span>
                   </input>
                   <input type="RADIO" value="2" name="{{ forloop.counter }}">
-                      Katılmıyorum
+                      <font color=#a29061>Katılmıyorum</font>
+                      <span style="display:inline-block; width: 70px;"></span>
                   </input>
                   <input type="RADIO" value="3" name="{{ forloop.counter }}">
-                      Yorumsuz
+                      <font color=#a29061>Yorumsuz</font>
+                      <span style="display:inline-block; width: 70px;"></span>
                   </input>
                   <input type="RADIO" value="4" name="{{ forloop.counter }}">
-                      Katılıyorum
+                      <font color=#a29061>Katılıyorum</font>
+                      <span style="display:inline-block; width: 70px;"></span>
                   </input>
                   <input type="RADIO" value="5" name="{{ forloop.counter }}">
-                      Kesinlikle Katılıyorum
-                  </input><br></br><br></br>
+                      <font color=#a29061>Kesinlikle Katılıyorum</font>
+                      <span style="display:inline-block; width: 0px;"></span>
+                  </input><br></br><br></br></small>
             {% endfor %}
             <div class="input_style">
               <input type="submit" value="ONAYLA"/>

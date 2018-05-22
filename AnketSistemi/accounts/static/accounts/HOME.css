@@ -77,6 +77,16 @@ w2.ontop{
     z-index:2;
 }
 
+w3.ontop{
+    position: relative;
+    color: white;
+    font-size: 20px;
+    margin-left: 150px;
+    margin-top: 10px;
+    float: left;
+    z-index:2;
+}
+
 d1{
     color: #A29061;
     font-size: 15px;
@@ -96,22 +106,54 @@ d1.ontop{
     z-index:2;
 }
 
+.ontop input[type="text"]
+{
+    margin-left:auto;
+    padding: 3px;
+    font-size: 83%;
+    border: none;
+    background: #A29061;
+}
+
+.ontop input[type=submit]
+{
+    background: #A29061;
+    border: none;
+    border-radius: 8px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 100%;
+    color: #262262;
+}
+
+.ontop input[type=submit]:hover
+{
+    background: #262262;
+    border: none;
+    border-radius: 8px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 100%;
+    color: #A29061;
+}
+
 .ontop table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
     padding: 10px;
     width: 87.5%;
     text-align: center;
-    font-size: 90%;
+    font-size: 75%;
+    table-layout:fixed;
 }
 
 table#rapor tr:nth-child(even) {
     color: black;
     background-color: #b7b3e5;
+    table-layout:fixed;
 }
 table#rapor tr:nth-child(odd) {
     color: black;
     background-color: #dbd9f2;
+    table-layout:fixed;
 }
 table#rapor th {
     color: #A29061;

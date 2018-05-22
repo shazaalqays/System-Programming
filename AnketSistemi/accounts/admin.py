@@ -86,6 +86,7 @@ class DersAdmin(admin.ModelAdmin):
 class OgrenciDersResource(resources.ModelResource):
     class Meta():
         model = ogrenci_ders
+        fields = ('id', 'grup_no', 'ders_kodu', 'ogrenci_no',)
 
 
 class OgreciDersAdmin(ImportExportActionModelAdmin):

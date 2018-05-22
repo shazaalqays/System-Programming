@@ -11,7 +11,7 @@
         <li><a href="/home">Home</a></li>
         <li><a class="active" href="/sonuclar">Sonuclar</a></li>
         <li><a href="/profil">Profil</a></li>
-        <li><a href="/">Log out</a></li>
+        <li><a href="/logout">Log out</a></li>
     </ul>
     {% if user.yon %}
         {% for m in makam %}
@@ -21,6 +21,14 @@
                 {% endfor %}
             </d1>
             <w2 class="ontop">
+                <div class="ontop">
+                    <form method="POST" action="../sonuclar/">{% csrf_token %}
+                        Aramak istediğiniz hoca kodu:
+                        <input type="text" name="hocakodu">
+                        <input type="submit" value="ARA">
+                    </form>
+                </div>
+                <br></br>
                 <table id="rapor">
                   <tr>
                     <th>Hoca Kodu</th>
@@ -46,64 +54,46 @@
                       </tr>
                   {% endfor %}
                 </table>
+                <br></br>
+                <br></br>
             </w2>
         {% endfor %}
     {% endif %}
     {% if user.hoc %}
+        <d1 class="ontop">
+            {% for s in sorular %}
+                S{{ forloop.counter }}: {{ s }}<br></br>
+            {% endfor %}
+        </d1>
         <w2 class="ontop">
-        {% for soru in sorular %}
-            {{ soru }}<br></br>
-            {% if forloop.counter == 1 %}
-                {{ soru01 }}<br></br>
-            {% endif %}
-            {% if forloop.counter == 2 %}
-                {{ soru02 }}<br></br>
-            {% endif %}
-            {% if forloop.counter == 3 %}
-                {{ soru03 }}<br></br>
-            {% endif %}
-            {% if forloop.counter == 4 %}
-                {{ soru04 }}<br></br>
-            {% endif %}
-            {% if forloop.counter == 5 %}
-                {{ soru05 }}<br></br>
-            {% endif %}
-            {% if forloop.counter == 6 %}
-                {{ soru06 }}<br></br>
-            {% endif %}
-            {% if forloop.counter == 7 %}
-                {{ soru07 }}<br></br>
-            {% endif %}
-            {% if forloop.counter == 8 %}
-                {{ soru08 }}<br></br>
-            {% endif %}
-            {% if forloop.counter == 9 %}
-                {{ soru09 }}<br></br>
-            {% endif %}
-            {% if forloop.counter == 10 %}
-                {{ soru10 }}<br></br>
-            {% endif %}
-            {% if forloop.counter == 11 %}
-                {{ soru11 }}<br></br>
-            {% endif %}
-            {% if forloop.counter == 12 %}
-                {{ soru12 }}<br></br>
-            {% endif %}
-            {% if forloop.counter == 13 %}
-                {{ soru13 }}<br></br>
-            {% endif %}
-            {% if forloop.counter == 14 %}
-                {{ soru14 }}<br></br>
-            {% endif %}
-            {% if forloop.counter == 15 %}
-                {{ soru15 }}<br></br>
-            {% endif %}
-            {% if forloop.counter == 16 %}
-                {{ soru16 }}<br></br>
-            {% endif %}
-        {% endfor %}
+            <table id="rapor">
+              <tr>
+                <th>Ders Kodu</th>
+                <th>S1</th>
+                <th>S2</th>
+                <th>S3</th>
+                <th>S4</th>
+                <th>S5</th>
+                <th>S6</th>
+                <th>S7</th>
+                <th>S8</th>
+                <th>S9</th>
+              </tr>
+              {% for r in rapor %}
+                  <tr>
+                    {% for rr in r %}
+                        <td>{{ rr }}</td>
+                    {% endfor %}
+                  </tr>
+              {% endfor %}
+            </table>
+            <br></br>
+            <br></br>
+        </w2>
     {% endif %}
-    </w2>
     <div class="box">
     </div>
+    <br></br>
+    <footer>
+    </footer>
 {% endblock %}
